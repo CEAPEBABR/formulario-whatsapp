@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Formulário de Dados do Cliente</title>
+  <style>
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: #f4f6f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background: #ffffff;
+      padding: 24px;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 420px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 20px;
+      color: #333;
+    }
+
+    label {
+      display: block;
+      margin-top: 12px;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-top: 6px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 14px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      background: #25d366;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background: #1ebe5d;
+    }
+
+    .info {
+      margin-top: 12px;
+      font-size: 12px;
+      color: #666;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <h2>Dados do Cliente</h2>
+
+    <label for="nome">Nome completo</label>
+    <input type="text" id="nome" placeholder="Digite seu nome" required />
+
+    <label for="cpf">CPF</label>
+    <input type="text" id="cpf" placeholder="000.000.000-00" required />
+
+    <label for="nascimento">Data de Nascimento</label>
+    <input type="date" id="nascimento" required />
+
+    <label for="endereco">Endereço completo</label>
+    <input type="text" id="endereco" placeholder="Rua, número, bairro, cidade" required />
+
+    <button onclick="enviarWhatsApp()">Enviar via WhatsApp</button>
+
+    <div class="info">
+      Ao clicar em enviar, seus dados serão encaminhados via WhatsApp.
+    </div>
+  </div>
+
+  <script>
+    function enviarWhatsApp() {
+      const nome = document.getElementById('nome').value;
+      const cpf = document.getElementById('cpf').value;
+      const nascimento = document.getElementById('nascimento').value;
+      const endereco = document.getElementById('endereco').value;
+
+      if (!nome || !cpf || !nascimento || !endereco) {
+        alert('Por favor, preencha todos os campos.');
+        return;
+      }
+
+      const mensagem = `Olá, segue meus dados:\n\n` +
+        `Nome: ${nome}\n` +
+        `CPF: ${cpf}\n` +
+        `Data de Nascimento: ${nascimento}\n` +
+        `Endereço: ${endereco}`;
+
+      // Substitua o número abaixo pelo WhatsApp que receberá os dados
+      const telefone = '5575991007774'; // Ex: 5511999999999
+
+      const url = `https://wa.me/${telefone}?text=${encodeURIComponent(mensagem)}`;
+
+      window.open(url, '_blank');
+    }
+  </script>
+
+</body>
+</html>
